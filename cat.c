@@ -4,8 +4,6 @@
 void printFile(char path[], char param[]);
 
 int main(int argc, char* argv[]) {
-    // Debug mode - remove after final
-    printf("You have entered %d arguments:\n", argc);
     if (argc > 3) {
         printf("Too many arguments!\n");
     } else if (argc == 2) {
