@@ -9,7 +9,6 @@ int main(int argc, char* argv[]) {
     } else if (argc == 2) {
         printFile(argv[1], "0");
     } else if (argc == 3){
-        printf("%s\n",  argv[1]);
         printFile(argv[2], argv[1]);
     }
     return 0;
@@ -20,11 +19,11 @@ void printFile(char path[], char param[]) {
     char symb, prev_symb;
     int b_flag, e_flag, n_flag, s_flag, t_flag;
 
-    b_flag = strchr(param, 'b') != NULL ? 1 : 0;
-    e_flag = strchr(param, 'e') != NULL ? 1 : 0;
-    n_flag = strchr(param, 'n') != NULL ? 1 : 0;
-    s_flag = strchr(param, 's') != NULL ? 1 : 0;
-    t_flag = strchr(param, 't') != NULL ? 1 : 0;
+    b_flag = (strchr(param, 'b') || !strcmp(param, "--number-nonblank")) && strcmp(param, "--number") && strcmp(param, "--squeeze-blank") != 0 ? 1 : 0;
+    e_flag = (strchr(param, 'e') || strchr(param, 'E')) && strcmp(param, "--squeeze-blank") && strcmp(param, "--number") && strcmp(param, "--number-nonblank") != 0 ? 1 : 0;
+    n_flag = (strchr(param, 'n') || !strcmp(param, "--number")) && strcmp(param, "--number-nonblank") && strcmp(param, "--squeeze-blank")!= 0 ? 1 : 0;
+    s_flag = strchr(param, 's') || !strcmp(param, "--squeeze-blank") != 0 ? 1 : 0;
+    t_flag = strchr(param, 't') || strchr(param, 'T') != NULL ? 1 : 0;
 
     if(fptr != NULL) {
         int num_line = 1;
